@@ -1,6 +1,6 @@
 resource "aws_cloudtrail" "default" {
-  count                         = module.this.enabled ? 1 : 0
-  name                          = module.this.id
+  count                         = module.context.enabled ? 1 : 0
+  name                          = module.context.id
   enable_logging                = var.enable_logging
   s3_bucket_name                = var.s3_bucket_name
   enable_log_file_validation    = var.enable_log_file_validation
@@ -9,7 +9,7 @@ resource "aws_cloudtrail" "default" {
   include_global_service_events = var.include_global_service_events
   cloud_watch_logs_role_arn     = var.cloud_watch_logs_role_arn
   cloud_watch_logs_group_arn    = var.cloud_watch_logs_group_arn
-  tags                          = module.this.tags
+  tags                          = module.context.tags
   kms_key_id                    = var.kms_key_arn
   is_organization_trail         = var.is_organization_trail
   s3_key_prefix                 = var.s3_key_prefix
