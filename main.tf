@@ -1,4 +1,6 @@
 resource "aws_cloudtrail" "default" {
+  #checkov:skip=CKV_AWS_35:skipping 'Ensure CloudTrail logs are encrypted at rest using KMS CMKs' because it can be encrypted through 'var.kms_key_arn'.
+  #checkov:skip=CKV_AWS_35:skipping 'Ensure CloudTrail trails are integrated with CloudWatch Logs' because it can be configured through 'var.cloud_watch_logs_group_arn'.
   count                         = module.context.enabled ? 1 : 0
   name                          = module.context.id
   enable_logging                = var.enable_logging
